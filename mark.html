@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>{{ session.subject }}</h1>
+    {% if expired %}
+        <p class="error">This QR code has expired.</p>
+    {% elif error %}
+        <p class="error">{{ error }}</p>
+    {% elif message %}
+        <p class="success">{{ message }}</p>
+    {% else %}
+        <p>Enter your roll number to mark attendance.</p>
+        <form method="post">
+            <input name="roll_no" placeholder="Roll number" required autofocus>
+            <button>Mark Attendance</button>
+        </form>
+        <small>Demo note: the real version can use student login/device verification here.</small>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Attendance Report</h1>
+<table>
+<tr><th>Roll No.</th><th>Name</th><th>Present</th><th>Total Sessions</th><th>Percentage</th></tr>
+{% for r in rows %}
+<tr>
+<td>{{ r.roll_no }}</td>
+<td>{{ r.name }}</td>
+<td>{{ r.present }}</td>
+<td>{{ r.total }}</td>
+<td>
+{% if r.total %}
+{{ "%.1f"|format(r.present * 100 / r.total) }}%
+{% else %}0%{% endif %}
+</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
