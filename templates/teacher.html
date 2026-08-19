@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Teacher Dashboard</h1>
+
+<form method="post" action="/create_session" class="card">
+    <input name="subject" placeholder="Subject e.g. Mathematics" required>
+    <input name="minutes" type="number" min="1" max="30" value="2" required>
+    <button>Create Attendance QR</button>
+</form>
+
+<h2>Attendance Sessions</h2>
+{% for s in sessions %}
+<div class="session card">
+    <div>
+        <h3>{{ s.subject }}</h3>
+        <p>Created: {{ s.created_at }}</p>
+        <p>Expires: {{ s.expires_at }}</p>
+        <a href="/session/{{ s.id }}">View attendance</a>
+    </div>
+    <img class="qr" src="data:image/png;base64,{{ qr_images[s.id] }}" alt="QR code">
+</div>
+{% else %}
+<p>No sessions created yet.</p>
+{% endfor %}
+{% endblock %}

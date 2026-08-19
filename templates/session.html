@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ session.subject }} — Attendance</h1>
+<table>
+<tr><th>Roll No.</th><th>Name</th><th>Marked At</th></tr>
+{% for r in rows %}
+<tr><td>{{ r.roll_no }}</td><td>{{ r.name }}</td><td>{{ r.marked_at }}</td></tr>
+{% else %}
+<tr><td colspan="3">Nobody has marked attendance yet.</td></tr>
+{% endfor %}
+</table>
+{% endblock %}
